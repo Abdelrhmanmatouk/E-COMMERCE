@@ -1,0 +1,66 @@
+<div class="container">
+  <section
+    *ngIf="categoryDetails.name" class="w-75 mx-auto rounded shadow bg-main-light p-3 my-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <img class="w-100"  [src]="categoryDetails.image" [alt]="categoryDetails.name"/>
+      </div>
+      <div class="col-md-6">
+        <h2>{{ categoryDetails.name }}</h2>
+        <div class="row g-4">
+          <div
+            *ngFor="let category of AllSubCategoriesOnCategory"
+            class="col-sm-6 col-md-6 col-lg-6"
+          >
+            <div
+              class="border border-success shadow rounded p-2 cursor-pointer"
+            >
+              <h4 class="text-center text-main">{{ category.name }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    *ngIf="productsInCategory.length != 0"
+    class="row g-4 justify-content-center"
+  >
+    <h2 class="text-center">All Products in {{ categoryDetails.name }}</h2>
+    <div
+      *ngFor="let product of productsInCategory"
+      class="col-sm-6 col-md-4 col-lg-3 my-3"
+    >
+      <div class="border border-success shadow rounded p-2 cursor-pointer">
+        <div
+          routerLink="/productDetails/{{ product.id }}"
+          class="cursor-pointer"
+        >
+          <img
+            class="w-100"
+            [src]="product.imageCover"
+            [title]="product.title"
+            [alt]="product.title"
+          />
+          <h3 class="h6">
+            {{ product.title.split(" ").splice(0, 2).join(" ") }}
+          </h3>
+          <h4 class="h6 text-main">{{ product.category.name }}</h4>
+          <div class="d-flex align-items-center justify-content-between small">
+            <span class=" ">{{ product.price | currency : "Egp" }}</span>
+            <span class="text-muted">
+              <i class="fa-solid fa-star rating-color"></i>
+              {{ product.ratingsAverage }}
+            </span>
+          </div>
+        </div>
+        <button
+          (click)="addProductTcart(product.id)"
+          class="btn bg-main text-white m-auto d-block"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

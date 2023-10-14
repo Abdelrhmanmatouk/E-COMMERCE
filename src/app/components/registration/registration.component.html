@@ -1,0 +1,137 @@
+<div class="container">
+  <h3>Register Now :</h3>
+  <section class="w-75 mx-auto rounded bg-main-light mb-3 p-3 shadow" >
+    <form [formGroup]="registrationform" (ngSubmit)="register(registrationform)">
+      <label for="" class=" my-2">Name :</label>
+      <input
+        formControlName="name"
+        type="text"
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf="
+          registrationform.controls['name'].errors &&
+          registrationform.controls['name'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="registrationform.controls['name'].getError('required')">
+          User name is required
+        </p>
+        <p *ngIf="registrationform.controls['name'].getError('pattern')">
+          User name must start with uppercase
+        </p>
+        <p *ngIf="registrationform.controls['name'].getError('minLength')">
+          Min length is 3 charcters
+        </p>
+        <p *ngIf="registrationform.controls['name'].getError('maxLength')">
+          Max length is 30 charcters
+        </p>
+      </div>
+
+      <label for="" class=" form-label">email :</label>
+      <input
+        formControlName="email"
+        type=""
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf="
+          registrationform.controls['email'].errors &&
+          registrationform.controls['email'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="registrationform.controls['email'].getError('required')">
+          E-mail is required
+        </p>
+        <p *ngIf="registrationform.controls['email'].getError('email')">
+          Enter valid E-mail
+        </p>
+      </div>
+
+      <label for="" class=" form-label">Password :</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf="
+          registrationform.controls['password'].errors &&
+          registrationform.controls['password'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="registrationform.controls['password'].getError('required')">
+          Password is required
+        </p>
+        <p *ngIf="registrationform.controls['password'].getError('pattern')">
+          Minimum eight characters, at least one letter, one number and one
+          special character
+        </p>
+      </div>
+
+      <label for="" class=" form-label">rePassword :</label>
+      <input
+        formControlName="rePassword"
+        type="password"
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf=" (registrationform.controls['rePassword'].errors && registrationform.controls['rePassword'].touched && registrationform.controls['rePassword'].value)
+        || (registrationform.controls['password'].value != registrationform.controls['rePassword'].value) && registrationform.controls['rePassword'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p>Password is not matched</p>
+      </div>
+
+      <label for="" class=" form-label">Phone :</label>
+      <input
+        formControlName="phone"
+        type="tel"
+        class="mx-auto d-block form-control mb-2"
+      />
+
+      <div
+        *ngIf="
+          registrationform.controls['phone'].errors &&
+          registrationform.controls['phone'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="registrationform.controls['phone'].getError('required')">
+          Phone is required
+        </p>
+        <p *ngIf="registrationform.controls['phone'].getError('pattern')">
+          Enter valid Egyptain Number
+        </p>
+      </div>
+       <p *ngIf="errorMessage" class="alert alert-danger mx-auto d-block form-control mb-1">{{errorMessage}}</p>
+
+  <div class="d-flex justify-content-between">
+    <h5 class=" mt-3">Already have an account <a class="text-main" routerLink="/login">Login</a></h5>
+    <button [disabled]="!registrationform.valid" *ngIf="!islooding"
+    type="submit"
+    class="btn bg-main text-white ms-auto d-block mt-3 "
+  >
+    Register
+  </button>
+  <button *ngIf="islooding"
+    type="button"
+    class="btn bg-main text-white ms-auto d-block mt-3 "
+  >
+   <i class="fas fa-spinner fa-spin"></i>
+  </button>
+  </div>
+
+
+    </form>
+  </section>
+
+</div>

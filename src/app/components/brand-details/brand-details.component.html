@@ -1,0 +1,62 @@
+<div class="container">
+  <section
+    *ngIf="brandDetails.name"
+    class="w-50 mx-auto rounded shadow bg-main-light p-3 my-5"
+  >
+    <div class="row my-5 g-4">
+      <div class="col-md-12">
+        <img
+          class="w-100"
+          [src]="brandDetails.image"
+          [alt]="brandDetails.name"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div
+    *ngIf="productsInBrand.length != 0"
+    class="row g-4 justify-content-center"
+  >
+    <h2 class="text-center">All Products by {{ brandDetails.name }}</h2>
+    <div
+      *ngFor="let product of productsInBrand"
+      class="col-sm-6 col-md-4 col-lg-3 my-3"
+    >
+      <div class=" product border border-success shadow rounded p-2 cursor-pointer">
+        <i *ngIf="!wishListproducts.includes(product.id)" (click)="AddProductToWishlist(product.id)" class="fa-regular fa-star star"></i>
+        <i *ngIf="wishListproducts.includes(product.id)" (click)="Removeproductfromwishlist(product.id)" class="fa-solid fa-star star"></i>
+        <div
+          routerLink="/productDetails/{{ product.id }}"
+          class="cursor-pointer"
+        >
+
+          <img
+            class="w-100"
+            [src]="product.imageCover"
+            [title]="product.title"
+            [alt]="product.title"
+          />
+
+          <h3 class="h6">
+            {{ product.title.split(" ").splice(0, 2).join(" ") }}
+          </h3>
+          <h4 class="h6 text-main">{{ product.category.name }}</h4>
+          <div class="d-flex align-items-center justify-content-between small">
+            <span class=" ">{{ product.price | currency : "Egp" }}</span>
+            <span class="text-muted">
+              <i class="fa-solid fa-star rating-color"></i>
+              {{ product.ratingsAverage }}
+            </span>
+          </div>
+        </div>
+        <button
+          (click)="addProductTcart(product.id)"
+          class="btn bg-main text-white m-auto d-block"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

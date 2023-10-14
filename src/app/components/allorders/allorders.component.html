@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row my-5 justify-content-center g-4">
+    <h2 class="text-center text-capitalize fw-bolder">all orders </h2>
+    <div *ngFor="let order of orders" class="col-sm-12 my-3">
+     <div class="row">
+      <div
+      class="d-flex justify-content-evenly align-items-center   mx-auto rounded bg-main-light mb-3 p-3 shadow"
+    >
+      <div class="text-center">
+        <h3 class="fw-bolder text-capitalize">created at</h3>
+        <h5>{{ order.createdAt | date : "dd/MM/yyyy" }}</h5>
+      </div>
+
+      <div class="text-center">
+        <h3 class="fw-bolder text-capitalize">total</h3>
+        <h5>{{ order.totalOrderPrice }}</h5>
+      </div>
+      <div class="text-center">
+        <i  class="fa-solid fa-truck-fast fa-xl"></i>
+        <h5>on the way</h5>
+      </div>
+      <div class="text-center">
+        <i  class='fa-solid fa-wallet fa-xl'></i>
+        <h5>paid</h5>
+      </div>
+    </div>
+     </div>
+     <div class="row">
+      <div *ngFor="let item of order.cartItems" class="col-sm-12 my-3" >
+
+        <div class="d-flex justify-content-evenly align-items-center mx-auto mb-3">
+          <div class="d-flex align-items-center">
+            <img [src]="item.product.imageCover" height="250px" class="w-50" [alt]="item.product.title">
+            <h3 class="mx-1">{{item.product.title.split(" ").splice(0,2).join(" ") }}</h3>
+          </div>
+          <div class="text-center">
+            <h3 class="fw-bolder text-capitalize">price</h3>
+            {{item.price}}
+          </div>
+          <div class="text-center">
+            <h3 class="fw-bolder text-capitalize">QUANTITY</h3>
+            {{item.count}}
+          </div>
+          <div class="text-center">
+            <h3 class="fw-bolder text-capitalize">QUANTITY</h3>
+            {{item.count}}
+          </div>
+        </div>
+       </div>
+     </div>
+
+
+
+    </div>
+  </div>
+</div>

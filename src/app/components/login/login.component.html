@@ -1,0 +1,84 @@
+<div class="container">
+  <h3>Login Now :</h3>
+  <section class="w-75 mx-auto rounded bg-main-light mb-3 p-3 shadow">
+    <form [formGroup]="loginform" (ngSubmit)="Login(loginform)">
+      <label for="" class="form-label">email :</label>
+      <input
+        formControlName="email"
+        type=""
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf="
+          loginform.controls['email'].errors &&
+          loginform.controls['email'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="loginform.controls['email'].getError('required')">
+          E-mail is required
+        </p>
+        <p *ngIf="loginform.controls['email'].getError('email')">
+          Enter valid E-mail
+        </p>
+      </div>
+
+      <label for="" class="form-label">Password :</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="mx-auto d-block form-control mb-1"
+      />
+
+      <div
+        *ngIf="
+          loginform.controls['password'].errors &&
+          loginform.controls['password'].touched
+        "
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        <p *ngIf="loginform.controls['password'].getError('required')">
+          Password is required
+        </p>
+        <p *ngIf="loginform.controls['password'].getError('pattern')">
+          Minimum eight characters, at least one letter, one number and one
+          special character
+        </p>
+      </div>
+
+      <p
+        *ngIf="errorMessage"
+        class="alert alert-danger mx-auto d-block form-control mb-1"
+      >
+        {{ errorMessage }}
+      </p>
+      <div class="d-flex justify-content-between">
+        <button
+          routerLink="/forgetpassword"
+          type="submit"
+          class="btn bg-danger text-white mt-3"
+        >
+          Forget password
+        </button>
+
+        <button
+          [disabled]="!loginform.valid"
+          *ngIf="!islooding"
+          type="submit"
+          class="btn bg-main text-white mt-3"
+        >
+          Login
+        </button>
+        <button
+          *ngIf="islooding"
+          type="button"
+          class="btn bg-main text-white mt-3"
+        >
+          <i class="fas fa-spinner fa-spin"></i>
+        </button>
+      </div>
+    </form>
+  </section>
+
+</div>

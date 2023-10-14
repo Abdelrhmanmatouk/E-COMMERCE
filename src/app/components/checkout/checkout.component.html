@@ -1,0 +1,23 @@
+<div class="container">
+  <form [formGroup]="shippingAddress" (ngSubmit)="checkout(shippingAddress)">
+    <label for="" class=" form-label">details :</label>
+    <input
+      formControlName="details"
+      type=""
+      class="mx-auto d-block form-control mb-1"
+    />
+    <label for="" class=" form-label">phone :</label>
+    <input
+      formControlName="phone"
+      type="tel"
+      class="mx-auto d-block form-control mb-1"
+    />
+    <label for="" class=" form-label">city :</label>
+    <input
+      formControlName="city"
+      type=""
+      class="mx-auto d-block form-control mb-1"
+    />
+    <button class="btn bg-main px-3 my-4  text-white"  type="submit">Order</button>
+  </form>
+</div>
