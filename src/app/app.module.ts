@@ -71,7 +71,7 @@ import { AllordersComponent } from './components/allorders/allorders.component';
     NgxSpinnerModule,
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor}
   ],
   bootstrap: [AppComponent]
 })
