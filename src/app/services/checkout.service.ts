@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment.development';
 export class CheckoutService {
 
   constructor(private _HttpClient:HttpClient) { }
-  // https://e-commerce-pi-rust.vercel.app/
 
   onlineCheckout(cartid:string,shipingAddress:any):Observable<any>{
 return this._HttpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartid}?url=https://e-commerce-pi-rust.vercel.app`,{
